@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         fxxk-tree-hole
 // @namespace    xiaotianxt/fxxk-tree-hole
-// @version      0.0.1
+// @version      0.0.2
 // @author       monkey
 // @description  优化北大树洞无限滚动，收藏搜索，页面展示等
 // @icon         https://treehole.pku.edu.cn/web/favicon.ico

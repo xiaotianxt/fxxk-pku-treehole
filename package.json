@@ -2,7 +2,7 @@
   "name": "fxxk-tree-hole",
   "description": "优化北大树洞无限滚动，收藏搜索，页面展示等",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
