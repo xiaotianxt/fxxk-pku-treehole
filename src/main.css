@@ -1,0 +1,26 @@
+#copy-indicator {
+  display: none;
+  color: #88aaee;
+}
+
+code:has(#copy-indicator) {
+  position: relative;
+  cursor: pointer;
+  text-decoration: underline;
+  color: #99bbff;
+  user-select: none;
+}
+
+code:has(#copy-indicator):hover #copy-indicator {
+  display: block;
+  background: white;
+  padding: 1px 1px;
+  border-radius: 2px;
+  position: absolute;
+  top: -1.2rem;
+  z-index: 10000;
+}
+
+.box-header-top-icon:has(#copy-indicator) {
+  overflow: unset;
+}

@@ -1,0 +1,20 @@
+{
+  "name": "fxxk-tree-hole",
+  "description": "优化北大树洞无限滚动，收藏搜索，页面展示等",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
+    "vite-plugin-monkey": "^3.5.1"
+  },
+  "dependencies": {
+    "@xiaotianxt/monkey-tool": "^0.3.1"
+  }
+}
