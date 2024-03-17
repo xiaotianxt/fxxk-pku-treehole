@@ -94,8 +94,8 @@ const log = new Log();
       body?: Document | BodyInit | null
     ): void {
       this.onreadystatechange = () => {
-        const path = new URL(this.responseURL, window.location.href).pathname;
-        if (!/\/api\/pku_hole/.test(path)) return;
+        const url = new URL(this.responseURL, window.location.href);
+        if (!/\/api\/pku_hole/.test(url.pathname)) return;
 
         if (this.readyState === 4 && this.status === 200) {
           // 通过Object.defineProperty修改responseText的getter
@@ -106,7 +106,10 @@ const log = new Log();
                 const originalData = JSON.parse(this._response);
 
                 // 在这里篡改原始数据
-                modifiedData = log.replace(originalData); // 假设你修改了originalData
+                modifiedData = log.replace(
+                  originalData,
+                  url.searchParams.get("pid")
+                ); // 假设你修改了originalData
               } catch (e) {
                 console.error("解析JSON数据出错:", e);
                 modifiedData = this._response; // 出错时返回原始数据

@@ -35,11 +35,15 @@
       const jsonData = localStorage.getItem(LS_KEY) || "[]";
       this.map = new Map(JSON.parse(jsonData));
     }
-    replace(data) {
+    replace(data, pid) {
       var _a;
       const threads = ((_a = data == null ? void 0 : data.data) == null ? void 0 : _a.data) || [];
-      if (!threads.length)
+      if (!threads.length) {
+        if (pid && this.map.has(Number(pid))) {
+          threads.splice(0, 0, this.map.get(Number(pid)));
+        }
         return data;
+      }
       threads.forEach((t) => this.map.set(t.pid, t));
       this.save();
       let i = 0;
@@ -142,8 +146,8 @@
       });
       XMLHttpRequest.prototype.send = function(body) {
         this.onreadystatechange = () => {
-          const path = new URL(this.responseURL, window.location.href).pathname;
-          if (!/\/api\/pku_hole/.test(path))
+          const url = new URL(this.responseURL, window.location.href);
+          if (!/\/api\/pku_hole/.test(url.pathname))
             return;
           if (this.readyState === 4 && this.status === 200) {
             Object.defineProperty(this, "responseText", {
@@ -151,7 +155,10 @@
                 let modifiedData;
                 try {
                   const originalData = JSON.parse(this._response);
-                  modifiedData = log.replace(originalData);
+                  modifiedData = log.replace(
+                    originalData,
+                    url.searchParams.get("pid")
+                  );
                 } catch (e) {
                   console.error("解析JSON数据出错:", e);
                   modifiedData = this._response;

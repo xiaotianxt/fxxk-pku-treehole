@@ -39,10 +39,15 @@ export class Log {
     this.map = new Map(JSON.parse(jsonData));
   }
 
-  replace(data: TreeHoleRes): TreeHoleRes {
+  replace(data: TreeHoleRes, pid: string | null): TreeHoleRes {
     const threads = data?.data?.data || [];
 
-    if (!threads.length) return data;
+    if (!threads.length) {
+      if (pid && this.map.has(Number(pid))) {
+        threads.splice(0, 0, this.map.get(Number(pid)) as Thread);
+      }
+      return data;
+    }
 
     // First, remember all threads
     threads.forEach((t) => this.map.set(t.pid, t));
